@@ -8,7 +8,8 @@ import {
   UserIcon,
   ShieldCheckIcon,
   UsersIcon,
-  ArrowLeftOnRectangleIcon
+  ArrowLeftOnRectangleIcon,
+  ChartBarIcon
 } from '@heroicons/react/24/outline'
 
 // Definimos las variables de color
@@ -23,7 +24,10 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const items = [];
+  const items = [
+    { label: "Panel", path: "/dashboard", icon: ChartBarIcon },
+    { label: "Mis Tareas", path: "/dashboard/tasks", icon: DocumentTextIcon },
+  ];
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
