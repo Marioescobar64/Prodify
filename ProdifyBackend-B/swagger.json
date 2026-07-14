@@ -1,0 +1,64 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Prodify Productivity API",
+    "version": "1.0.0",
+    "description": "API de Productividad de Prodify"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3003/api/v1"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/dashboard": {
+      "get": {
+        "tags": ["Productivity"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Métricas del dashboard",
+        "responses": { "200": { "description": "Éxito" } }
+      }
+    },
+    "/tasks/pending": {
+      "get": {
+        "tags": ["Productivity"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Tareas pendientes",
+        "responses": { "200": { "description": "Éxito" } }
+      }
+    },
+    "/tasks/overdue": {
+      "get": {
+        "tags": ["Productivity"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Tareas atrasadas",
+        "responses": { "200": { "description": "Éxito" } }
+      }
+    },
+    "/summary/priorities": {
+      "get": {
+        "tags": ["Productivity"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Resumen de prioridades",
+        "responses": { "200": { "description": "Éxito" } }
+      }
+    },
+    "/statistics/completion": {
+      "get": {
+        "tags": ["Productivity"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Estadísticas de completadas",
+        "responses": { "200": { "description": "Éxito" } }
+      }
+    }
+  }
+}
