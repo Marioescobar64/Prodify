@@ -77,7 +77,7 @@ export const LoginForm = ({ onForgot }) => {
 
       {/* EMAIL / USUARIO */}
       <div>
-        <label className="block text-sm font-medium text-gray-800 mb-1.5">
+        <label className="block text-sm font-medium text-[#FFFFFF] mb-1.5 drop-shadow-sm">
           Email o Usuario
         </label>
         <input
@@ -85,14 +85,14 @@ export const LoginForm = ({ onForgot }) => {
           value={emailOrUsername}
           onChange={(e) => setEmailOrUsername(e.target.value)}
           placeholder="correo@ejemplo.com o usuario"
-          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg 
-                     focus:ring-2 focus:ring-blue-500 outline-none"
+          className="w-full px-4 py-2.5 text-sm text-gray-900 bg-white border border-transparent rounded-lg 
+                     focus:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none shadow-sm transition-all"
         />
       </div>
 
       {/* PASSWORD */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label className="block text-sm font-medium text-[#FFFFFF] mb-1.5 drop-shadow-sm">
           Contraseña
         </label>
         <input
@@ -100,8 +100,8 @@ export const LoginForm = ({ onForgot }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="••••••••"
-          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg 
-                     focus:ring-2 focus:ring-blue-500 outline-none"
+          className="w-full px-4 py-2.5 text-sm text-gray-900 bg-white border border-transparent rounded-lg 
+                     focus:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none shadow-sm transition-all"
         />
       </div>
 
@@ -109,23 +109,17 @@ export const LoginForm = ({ onForgot }) => {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-main-blue hover:opacity-90 text-white 
-                   font-medium py-2.5 px-4 rounded-lg 
-                   transition-colors duration-200 text-sm
+        className="w-full bg-[#3b82f6] hover:bg-[#2563eb] text-white 
+                   font-semibold py-3 px-4 rounded-lg shadow-lg
+                   transition-all duration-200 text-sm mt-2
                    disabled:opacity-70 disabled:cursor-not-allowed"
       >
         {loading ? "Verificando..." : "Iniciar Sesión"}
       </button>
 
       {/* LINK */}
-      <p className="text-center text-sm">
-        <button
-          type="button"
-          onClick={onForgot}
-          className="text-main-blue hover:underline"
-        >
-          ¿Olvidaste tu contraseña?
-        </button>
+      <p className="text-center text-sm hidden">
+        {/* El link se movió a AuthPage.jsx en el último diseño */}
       </p>
 
     </form>

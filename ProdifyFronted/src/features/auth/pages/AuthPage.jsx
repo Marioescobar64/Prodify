@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginForm } from "../components/LoginForm";
 import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
-import fondo from "../../../assets/img/fondo.png";
+import fondoPantallaLogin from "../../../assets/img/pantalla login - copia.png";
+import logoProdify from "../../../assets/img/logo Prodify.png";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const role = (localStorage.getItem("userRole") || "").toUpperCase();
@@ -20,33 +21,34 @@ const AuthPage = () => {
   return (
     <div className="relative min-h-screen flex items-center justify-center">
 
-      {/* Fondo */}
+      {/* Fondo - Pantalla Login */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${fondo})` }}
+        style={{ backgroundImage: `url("${fondoPantallaLogin}")` }}
       />
-      <div className="absolute inset-0 backdrop-blur-sm bg-black/40" />
+      {/* Overlay con degradado de verde esmeralda a morado */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-gradient-to-br from-[#32CC9A]/40 to-[#A020F0]/40" />
 
       {/* Contenido */}
-      <div className="w-full max-w-md text-white px-6 backdrop-blur-sm bg-black/40 p-6 rounded-lg relative">
+      <div className="w-full max-w-md text-[#FFFFFF] px-8 backdrop-blur-md bg-[#1E3A8A]/85 p-8 rounded-2xl relative shadow-2xl border border-white/10">
 
-        {/* Logo */}
+        {/* Logo Prodify Circular */}
         <div className="flex justify-center mb-6">
-          <div className="w-24 h-24 bg-white flex items-center justify-center rounded-lg">
+          <div className="w-32 h-32 bg-white flex items-center justify-center rounded-full p-4 shadow-lg overflow-hidden">
             <img
-              src="/src/assets/img/logo.png"
-              alt="Logo"
-              className="w-24 h-20 object-contain"
+              src={logoProdify}
+              alt="Logo Prodify"
+              className="w-full h-full object-contain"
             />
           </div>
         </div>
 
-        {/* Título dinámico */}
-        <h1 className="text-center text-2xl tracking-widest mb-6">
-          {isLogin ? "KinalPrax" : "Recuperar Contraseña"}
-        </h1>
+        {/* Subtítulo dinámico */}
+        <h2 className="text-center text-2xl tracking-wide mb-8 font-bold drop-shadow-md">
+          {isLogin ? "Iniciar Sesión" : "Recuperar Contraseña"}
+        </h2>
 
-        {/* 🔥 AQUÍ ESTÁ EL CAMBIO */}
+        {/* Formularios */}
         {isLogin ? (
           <LoginForm onForgot={() => setIsLogin(false)} />
         ) : (
@@ -54,24 +56,24 @@ const AuthPage = () => {
         )}
 
         {/* Opciones */}
-        <div className="flex justify-between text-sm mt-4 text-white/80">
+        <div className="flex justify-between text-sm mt-6 text-white/90 font-medium">
           {isLogin ? (
             <>
-              <label>
-                <input type="checkbox" className="mr-1" />
-                Remember me
+              <label className="flex items-center cursor-pointer hover:text-white transition-colors">
+                <input type="checkbox" className="mr-2 accent-blue-500 w-4 h-4" />
+                Recordarme
               </label>
 
               <span
-                className="cursor-pointer hover:underline"
+                className="cursor-pointer hover:text-white hover:underline transition-colors"
                 onClick={() => setIsLogin(false)}
               >
-                Forgot Password?
+                ¿Olvidaste tu contraseña?
               </span>
             </>
           ) : (
             <span
-              className="cursor-pointer hover:underline mx-auto"
+              className="cursor-pointer hover:text-white hover:underline transition-colors mx-auto"
               onClick={() => setIsLogin(true)}
             >
               Volver al login
