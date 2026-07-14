@@ -1,3 +1,3 @@
-import { axiosAdmin } from "../../shared/api/api.js";
+import { axiosBackendA, axiosBackendB } from "../../shared/api/api.js";
 
-// Aquí se agregarán las nuevas entidades
+// Aquí se agregarán las nuevas entidades
