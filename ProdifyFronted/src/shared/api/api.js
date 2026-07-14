@@ -18,7 +18,7 @@ const axiosBackendB = axios.create({
 
 axiosAuth.interceptors.request.use( (config)=>{
     config._axiosClient = "auth";
-    const token = useAuthStore.getState().token;
+    const token = useAuthStore.getState().token || localStorage.getItem("authToken");
     if(token){
         config.headers.Authorization = `Bearer ${token}`;
     }
@@ -27,7 +27,7 @@ axiosAuth.interceptors.request.use( (config)=>{
 
 axiosBackendA.interceptors.request.use( (config)=>{
     config._axiosClient = "backendA";
-    const token = useAuthStore.getState().token;
+    const token = useAuthStore.getState().token || localStorage.getItem("authToken");
     if(token){
         config.headers.Authorization = `Bearer ${token}`;
     }
@@ -36,7 +36,7 @@ axiosBackendA.interceptors.request.use( (config)=>{
 
 axiosBackendB.interceptors.request.use( (config)=>{
     config._axiosClient = "backendB";
-    const token = useAuthStore.getState().token;
+    const token = useAuthStore.getState().token || localStorage.getItem("authToken");
     if(token){
         config.headers.Authorization = `Bearer ${token}`;
     }
