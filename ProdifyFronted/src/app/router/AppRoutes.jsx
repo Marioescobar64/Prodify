@@ -1,8 +1,8 @@
-import { Navigate, Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route, Outlet } from "react-router-dom";
 
 import { AuthPage } from "../../features/auth/pages/AuthPage";
-
 import { DashboardPage } from "../layaouts/DashboardPage";
+import { TasksPage } from "../../features/tasks/TasksPage";
 
 
 const RequireAdmin = ({ children }) => {
@@ -28,17 +28,16 @@ export const AppRoutes = () => {
         path="/dashboard" 
         element={
           <RequireAdmin>
-            <DashboardPage />
+            {/* El Outlet se movió, DashBoardContainer ahora envuelve cada página individual si queremos o usamos Outlet. 
+                Wait, en el nuevo diseño DashBoardContainer está dentro de cada página (DashboardPage, TasksPage). 
+                Entonces el Outlet no es necesario si lo renderizan así. 
+                O podemos hacer un layout común. */}
+            <Outlet />
           </RequireAdmin>
         }
-        
-        
       >
-        
-
-        
-        {/* Empty dashboard for now */}
-        <Route index element={<div className="text-white text-2xl">Bienvenido al Dashboard</div>} />
+        <Route index element={<DashboardPage />} />
+        <Route path="tasks" element={<TasksPage />} />
       </Route>
 
       <Route path="*" element={<h1>Página no encontrada</h1>} />
