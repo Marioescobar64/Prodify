@@ -19,7 +19,7 @@ export const validateJWT = async (req, res, next) => {
     token = token.replace(/^Bearer\s+/, '');
 
     // Verificar el token con el mismo secret que usa el AuthService
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'super_secret_jwt_key_prodify');
 
     // Agregar datos del usuario al request
     req.userId = decoded.sub;
