@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-const TASKS_API_URL = process.env.SERVICEB;
-
 const fetchTasksFromServiceA = async (req) => {
     try {
+        const TASKS_API_URL = process.env.SERVICEB;
         const token = req.header('Authorization');
         const response = await axios.get(TASKS_API_URL, {
             headers: { Authorization: token }
