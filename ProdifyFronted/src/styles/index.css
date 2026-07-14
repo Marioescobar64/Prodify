@@ -1,175 +1,55 @@
 @import "tailwindcss";
-
-/* =========================
-   VARIABLES GLOBALES
-========================= */
+ 
+@theme {
+  --color-main-blue: #08316d;
+}
+ 
 :root {
-    /* Nueva paleta */
-    --primary: #33A1F4;
-    /* Azul cian */
-    --secondary: #32CC9A;
-    /* Verde esmeralda */
-    --accent: #A020F0;
-    /* Morado */
-    --bg: #33A1F4;
-    /* Fondo principal */
-    --card: #FFFFFF;
-    /* Tarjetas */
-    --text: #FFFFFF;
-    /* Texto principal */
-    --control: #000000;
-    /* Texto en inputs y controles */
-    --danger: #D32F2F;
-    /* Rojo para acciones de peligro */
-
-    /* Gradiente principal */
-    --gradient: linear-gradient(90deg,
-            #32CC9A 0%,
-            #A020F0 100%);
-
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+ 
+  --main-blue: #08316d;
+ 
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-/* =========================
-   UTILIDADES PERSONALIZADAS
-========================= */
-
-/* Fondos */
-.bg-primary {
-    background-color: var(--primary);
-}
-
-.bg-secondary {
-    background: var(--gradient);
-}
-
-.bg-card {
-    background-color: var(--card);
-}
-
-/* Textos */
-.text-primary {
-    color: var(--text);
-}
-
-.text-secondary {
-    color: var(--control);
-}
-
-/* Bordes */
-.border-primary {
-    border-color: var(--primary);
-}
-
-/* =========================
-   BOTÓN PRINCIPAL
-========================= */
-.btn-primary {
-    background: var(--gradient);
-    color: var(--text);
-    border-radius: 0.5rem;
-    padding: 0.625rem 1.25rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.btn-primary:hover {
-    opacity: 0.9;
-}
-
-.btn-primary:active {
-    transform: scale(0.98);
-}
-
-/* =========================
-   INPUT GLOBAL
-========================= */
-.input {
-    width: 100%;
-    border-radius: 0.5rem;
-    border: 1px solid var(--secondary);
-    padding: 0.625rem 0.875rem;
-    font-size: 0.875rem;
-    color: var(--control);
-    background-color: #ffffff;
-    outline: none;
-    box-sizing: border-box;
-    transition: all 0.2s ease-in-out;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.input:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(51, 161, 244, 0.35);
-}
-
-.input::placeholder {
-    color: #6b7280;
-}
-
-/* =========================
-   ANIMACIONES
-========================= */
+ 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-4px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+ 
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
+ 
 .animate-fadeIn {
-    animation: fadeIn 0.15s ease-out;
+  animation: fadeIn 0.15s ease-out;
 }
-
-/* =========================
-   SIDEBAR EFECTO ACTIVO
-========================= */
+ 
 .sidebar-underline {
-    position: relative;
+  position: relative;
 }
-
 .sidebar-underline.active::after {
-    content: "";
-    position: absolute;
-    border-radius: 6px;
-    background: linear-gradient(90deg,
-            rgba(50, 204, 154, 0.2) 0%,
-            #32CC9A 35%,
-            #A020F0 65%,
-            rgba(160, 32, 240, 0.2) 100%);
-    filter: blur(1.5px);
-
-    /* Escritorio */
-    left: 16px;
-    right: 16px;
-    bottom: 6px;
-    height: 4px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 767px) {
-    .sidebar-underline.active::after {
-        left: 8px;
-        right: 8px;
-        bottom: 2px;
-        height: 3px;
-    }
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 6px;
+  height: 5px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 49, 109, 0.18) 0%,
+    #08316d 50%,
+    rgba(8, 49, 109, 0.18) 100%
+  );
+  filter: blur(1.5px);
+  z-index: 1;
 }
