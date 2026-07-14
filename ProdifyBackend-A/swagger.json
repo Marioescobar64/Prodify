@@ -1,0 +1,113 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Prodify Tasks API",
+    "version": "1.0.0",
+    "description": "API de Gestión de Tareas de Prodify"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3002/api/v1"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/tasks": {
+      "get": {
+        "tags": ["Tasks"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Obtener todas las tareas",
+        "responses": { "200": { "description": "Éxito" } }
+      },
+      "post": {
+        "tags": ["Tasks"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Crear una tarea",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "título": { "type": "string" },
+                  "descripción": { "type": "string" },
+                  "prioridad": { "type": "string", "enum": ["Baja", "Media", "Alta"] },
+                  "estado": { "type": "string", "enum": ["Pendiente", "En Progreso", "Completada"] },
+                  "fecha": { "type": "string", "format": "date-time" }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "201": { "description": "Creado" } }
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "tags": ["Tasks"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Obtener una tarea por ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Éxito" } }
+      },
+      "put": {
+        "tags": ["Tasks"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Actualizar una tarea",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "título": { "type": "string" },
+                  "descripción": { "type": "string" },
+                  "prioridad": { "type": "string" },
+                  "estado": { "type": "string" },
+                  "fecha": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Actualizado" } }
+      },
+      "delete": {
+        "tags": ["Tasks"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Eliminar una tarea",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Eliminado" } }
+      }
+    },
+    "/tasks/{id}/status": {
+      "patch": {
+        "tags": ["Tasks"],
+        "security": [{"bearerAuth": []}],
+        "summary": "Actualizar estado de tarea",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": { "estado": { "type": "string", "enum": ["Pendiente", "En Progreso", "Completada"] } }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Actualizado" } }
+      }
+    }
+  }
+}
