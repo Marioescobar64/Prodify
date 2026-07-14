@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginForm } from "../components/LoginForm";
+import { RegisterForm } from "../components/RegisterForm";
 import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
 import fondoPantallaLogin from "../../../assets/img/pantalla login - copia.png";
 import logoProdify from "../../../assets/img/logo Prodify.png";
 
 const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [authMode, setAuthMode] = useState("login"); // 'login', 'register', 'forgot'
 
   const navigate = useNavigate();
 
@@ -45,36 +46,39 @@ const AuthPage = () => {
 
         {/* Subtítulo dinámico */}
         <h2 className="text-center text-2xl tracking-wide mb-8 font-bold drop-shadow-md">
-          {isLogin ? "Iniciar Sesión" : "Recuperar Contraseña"}
+          {authMode === "login" && "Iniciar Sesión"}
+          {authMode === "register" && "Crear Cuenta"}
+          {authMode === "forgot" && "Recuperar Contraseña"}
         </h2>
 
         {/* Formularios */}
-        {isLogin ? (
-          <LoginForm onForgot={() => setIsLogin(false)} />
-        ) : (
-          <ForgotPasswordForm onSwitch={() => setIsLogin(true)} />
-        )}
+        {authMode === "login" && <LoginForm onForgot={() => setAuthMode("forgot")} />}
+        {authMode === "register" && <RegisterForm onSwitchToLogin={() => setAuthMode("login")} />}
+        {authMode === "forgot" && <ForgotPasswordForm onSwitch={() => setAuthMode("login")} />}
 
         {/* Opciones */}
         <div className="flex justify-between text-sm mt-6 text-white/90 font-medium">
-          {isLogin ? (
+          {authMode === "login" && (
             <>
-              <label className="flex items-center cursor-pointer hover:text-white transition-colors">
-                <input type="checkbox" className="mr-2 accent-blue-500 w-4 h-4" />
-                Recordarme
-              </label>
+              <span
+                className="cursor-pointer hover:text-white hover:underline transition-colors"
+                onClick={() => setAuthMode("register")}
+              >
+                ¿No tienes cuenta? Regístrate
+              </span>
 
               <span
                 className="cursor-pointer hover:text-white hover:underline transition-colors"
-                onClick={() => setIsLogin(false)}
+                onClick={() => setAuthMode("forgot")}
               >
                 ¿Olvidaste tu contraseña?
               </span>
             </>
-          ) : (
+          )}
+          {authMode !== "login" && (
             <span
               className="cursor-pointer hover:text-white hover:underline transition-colors mx-auto"
-              onClick={() => setIsLogin(true)}
+              onClick={() => setAuthMode("login")}
             >
               Volver al login
             </span>
